@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Contact Fortitudo Studios Drama for drama classes, eisteddfod preparation, private coaching, and workshops.">
+    <title>Contact | Fortitudo Studios Drama</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header solid" data-header>
+      <a class="brand" href="index.html" aria-label="Fortitudo Studios Drama home">
+        <span class="brand-mark">F</span>
+        <span><strong>Fortitudo Studios</strong><small>Drama & eisteddfod coaching</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="classes.html">Classes</a>
+        <a href="guides.html">Guides</a>
+        <a class="active" href="contact.html">Contact</a>
+      </nav>
+      <a class="header-action" href="contact.html">Book a class</a>
+    </header>
+
+    <main class="page-main">
+      <section class="contact page-contact">
+        <div class="contact-inner">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h1>Book a class, plan an eisteddfod piece, or ask about coaching.</h1>
+            <p>
+              Send the student age, experience level, deadline, and whether you need group classes, private coaching, audition prep, or eisteddfod support.
+            </p>
+          </div>
+          <form class="contact-form" action="mailto:hello@fortitudostudios.com" method="post" enctype="text/plain">
+            <label>Name<input name="name" autocomplete="name" required></label>
+            <label>Email<input type="email" name="email" autocomplete="email" required></label>
+            <label>Message<textarea name="message" rows="6" required></textarea></label>
+            <button class="button primary" type="submit">Send enquiry</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span data-year></span> Fortitudo Studios Drama.</p>
+      <a href="index.html">Back home</a>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

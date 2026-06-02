@@ -7,7 +7,9 @@ if (year) {
 
 const setHeaderState = () => {
   if (!header) return;
-  header.classList.toggle("is-scrolled", window.scrollY > 24);
+  if (!header.classList.contains("solid")) {
+    header.classList.toggle("is-scrolled", window.scrollY > 24);
+  }
 };
 
 setHeaderState();
