@@ -14,3 +14,8 @@ const setHeaderState = () => {
 
 setHeaderState();
 window.addEventListener("scroll", setHeaderState, { passive: true });
+const EMAILJS = {
+  PUBLIC_KEY: "N7BQYsyCGc0luSO4R",
+  SERVICE_ID: "service_j5nb1ym",
+  TEMPLATE_ID: "template_xbx0kfk"   // ← replace with the drama template ID
+};
