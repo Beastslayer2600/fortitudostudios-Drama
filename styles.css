@@ -304,9 +304,10 @@ img {
 .card-kicker {
   margin: 0 0 14px;
   color: var(--gold-bright);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.14em;
+  font-family: Cinzel, serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
 }
 
@@ -318,9 +319,13 @@ p {
 }
 
 h1,
-h2 {
-  font-family: "Playfair Display", Georgia, serif;
-  line-height: 1.02;
+h2,
+h3,
+h4 {
+  font-family: Cinzel, serif;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
 }
 
 h1 {
@@ -425,7 +430,7 @@ h3 {
 
 .section {
   position: relative;
-  padding: clamp(74px, 10vw, 118px) clamp(18px, 4vw, 56px);
+  padding: clamp(90px, 12vw, 160px) clamp(18px, 4vw, 56px);
 }
 
 .split,
@@ -454,11 +459,12 @@ h3 {
 }
 
 .copy-block {
-  padding: 28px;
+  padding: clamp(34px, 5vw, 60px);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(244, 234, 208, 0.055);
-  box-shadow: var(--shadow);
+  border-radius: 12px;
+  background: rgba(20, 26, 19, 0.4);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 
 .text-link {
@@ -1382,9 +1388,9 @@ button[disabled] { opacity: 0.55; cursor: not-allowed; }
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  min-height: 500px;
-  padding: 20px;
+  gap: 20px;
+  min-height: 600px;
+  padding: 30px;
 }
 
 .bio-img-wrapper {
