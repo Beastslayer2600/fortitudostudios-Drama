@@ -889,27 +889,152 @@ h3 {
 
 .skip-link:focus { top: 0; }
 
-/* ---------- Credential band ---------------------------------------------- */
+/* ---------- Credential Band ----------------------------------------------- */
 .credential-band {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(18px, 4vw, 54px);
-  padding: 22px clamp(18px, 4vw, 56px);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: linear-gradient(90deg, rgba(18, 59, 45, 0.4), rgba(9, 11, 8, 0.7), rgba(18, 59, 45, 0.4));
+  background: var(--gold-dark);
+  color: var(--charcoal);
+  padding: 18px 20px;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+}
+
+.ribbon-panel {
+  background: linear-gradient(90deg, #8a6d3b 0%, #c5a059 50%, #8a6d3b 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.ribbon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
   text-align: center;
 }
 
-.credential-band > div {
+.ribbon-grid span {
+  font-family: Cinzel, serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.ribbon-grid strong {
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  .ribbon-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+@media (max-width: 500px) {
+  .ribbon-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Testimonials Section ----------------------------------------- */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  padding: 40px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: "“";
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 80px;
+  color: var(--gold-bright);
+  opacity: 0.2;
+  font-family: serif;
+}
+
+.testimonial-text {
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial-author {
+  font-family: Cinzel, serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold-bright);
+}
+
+/* ---------- Video Section ------------------------------------------------ */
+.video-placeholder {
+  aspect-ratio: 16 / 9;
+  background: var(--charcoal);
+  border: 1px solid var(--gold-dark);
+  border-radius: 16px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: var(--cream-2);
-  font-size: 14px;
-  letter-spacing: 0.02em;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+}
+
+.video-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+  filter: grayscale(1);
+}
+
+.video-play-btn {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: var(--gold-bright);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+  z-index: 2;
+}
+
+.video-play-btn:hover {
+  transform: scale(1.1);
+  background: #fff;
+}
+
+.video-play-btn svg {
+  margin-left: 5px;
+}
+
+.video-overlay-text {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  right: 40px;
+  z-index: 2;
+  text-align: center;
 }
 
 .credential-band strong {
