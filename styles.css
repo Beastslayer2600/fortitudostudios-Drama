@@ -1418,6 +1418,10 @@ button[disabled] { opacity: 0.55; cursor: not-allowed; }
 .coach-img-6 { grid-column: 1; grid-row: 4 / 6; transform: rotate(2deg); z-index: 2; }
 .coach-img-7 { grid-column: 2; grid-row: 5; transform: rotate(1deg); z-index: 3; }
 .coach-img-8 { grid-column: 2; grid-row: 6; transform: rotate(-4deg); z-index: 1; }
+.coach-img-9 { grid-column: 1; grid-row: 6; transform: rotate(2deg); z-index: 2; }
+.coach-img-10 { grid-column: 1; grid-row: 7; transform: rotate(-3deg); z-index: 1; }
+.coach-img-11 { grid-column: 2; grid-row: 7; transform: rotate(4deg); z-index: 2; }
+.coach-img-12 { grid-column: 1; grid-row: 8; transform: rotate(-1deg); z-index: 3; }
 
 .bio-img-wrapper:hover {
   transform: rotate(0deg) scale(1.1);
@@ -1432,7 +1436,7 @@ button[disabled] { opacity: 0.55; cursor: not-allowed; }
     min-height: auto;
     gap: 10px;
   }
-  .coach-img-1, .coach-img-2, .coach-img-3, .coach-img-4, .coach-img-5, .coach-img-6, .coach-img-7, .coach-img-8 {
+  .coach-img-1, .coach-img-2, .coach-img-3, .coach-img-4, .coach-img-5, .coach-img-6, .coach-img-7, .coach-img-8, .coach-img-9, .coach-img-10, .coach-img-11, .coach-img-12 {
     transform: none;
     grid-row: auto;
     grid-column: auto;
