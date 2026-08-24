@@ -18,10 +18,9 @@ const EMAILJS = {
 };
 
 /* 1. Footer year ---------------------------------------------------------- */
-const yearEl = document.querySelector("[data-year]");
-if (yearEl) {
-  yearEl.textContent = new Date().getFullYear();
-}
+document.querySelectorAll("[data-year]").forEach((el) => {
+  el.textContent = new Date().getFullYear();
+});
 
 /* 2. Sticky header -------------------------------------------------------- */
 const header = document.querySelector("[data-header]");
