@@ -157,3 +157,26 @@ html:not(.js) [data-reveal],
   .guide-longform{padding:112px 18px 70px}
   .guide-longform td:first-child{white-space:normal}
 }
+
+/* ---------------------------------------------------------------------------
+   FIX (25 Aug 2026): scroll-reveal sections were permanently invisible.
+
+   The hide rule  `html.js [data-reveal]`   has specificity (0,2,1).
+   The show rule  `[data-reveal].is-in`     has specificity (0,2,0).
+   Specificity beats source order, so adding .is-in never un-hid anything and
+   ~74% of the homepage rendered as blank space. These rules out-specify it.
+--------------------------------------------------------------------------- */
+html.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Same bug affected reduced-motion users: the override was only (0,1,0). */
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal],
+  html.js [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
