@@ -60,3 +60,39 @@ html:not(.js) [data-reveal],
   letter-spacing: .04em;
 }
 .season-ribbon a { color: inherit; text-decoration: underline; }
+
+/* Kill excess empty space under hero copy */
+.hero.hero-home {
+  min-height: auto;
+  min-height: min(86vh, 820px);
+  align-items: end;
+}
+.hero-home .hero-content {
+  padding-top: clamp(88px, 11vh, 120px);
+  padding-bottom: 56px;
+}
+.hero-home .hero-marquee {
+  bottom: 0;
+}
+.hero-home .spark-frame {
+  inset: 88px 24px 52px;
+}
+
+/* First bands must never sit invisible (looks like blank space) */
+.credential-band[data-reveal],
+.proof-band[data-reveal],
+.credential-band,
+.proof-band {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (max-width: 900px) {
+  .hero.hero-home {
+    min-height: auto;
+  }
+  .hero-home .hero-content {
+    padding-top: 96px;
+    padding-bottom: 48px;
+  }
+}
