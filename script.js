@@ -4,25 +4,19 @@
    2. Sticky header state
    3. Mobile navigation (the nav was previously hidden entirely under 900px)
    4. EmailJS enquiry + lead-magnet forms
-   ------------------------------------------------------------------------- */
+   -------------------------------------------------------------------------
+*/
 
-/* --- CONFIG ---------------------------------------------------------------
-   These are EmailJS *public* keys — safe to ship in client-side code.
-   To route drama enquiries to their own template, create a new template in
-   the EmailJS dashboard and change TEMPLATE_ID below. Nothing else changes.
-   -------------------------------------------------------------------------- */
 const EMAILJS = {
   PUBLIC_KEY: "N7BQYsyCGc0luSO4R",
   SERVICE_ID: "service_j5nb1ym",
   TEMPLATE_ID: "template_xbx0kfk"
 };
 
-/* 1. Footer year ---------------------------------------------------------- */
 document.querySelectorAll("[data-year]").forEach((el) => {
   el.textContent = new Date().getFullYear();
 });
 
-/* 2. Sticky header -------------------------------------------------------- */
 const header = document.querySelector("[data-header]");
 
 const setHeaderState = () => {
@@ -33,7 +27,6 @@ const setHeaderState = () => {
 setHeaderState();
 window.addEventListener("scroll", setHeaderState, { passive: true });
 
-/* 3. Mobile navigation ---------------------------------------------------- */
 const navToggle = document.querySelector("[data-nav-toggle]");
 const siteNav = document.querySelector("[data-site-nav]");
 
@@ -60,7 +53,6 @@ if (navToggle && siteNav) {
   });
 }
 
-/* 4. Forms ---------------------------------------------------------------- */
 const emailjsReady = () =>
   typeof window.emailjs !== "undefined" && typeof window.emailjs.send === "function";
 
@@ -68,7 +60,7 @@ if (emailjsReady()) {
   try {
     window.emailjs.init({ publicKey: EMAILJS.PUBLIC_KEY });
   } catch (err) {
-    window.emailjs.init(EMAILJS.PUBLIC_KEY); // older SDK signature
+    window.emailjs.init(EMAILJS.PUBLIC_KEY);
   }
 }
 
@@ -78,8 +70,6 @@ const setStatus = (el, state, text) => {
   el.textContent = text;
 };
 
-/* Build a single readable message body so the enquiry works with any
-   EmailJS template that expects name / email / phone / message.          */
 const composeMessage = (data) => {
   const lines = [];
   if (data.interest) lines.push("Interested in: " + data.interest);
@@ -102,7 +92,6 @@ document.querySelectorAll("[data-emailjs-form]").forEach((form) => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    // Honeypot: bots fill hidden fields, humans do not.
     if (form.querySelector("[name=company]") && form.querySelector("[name=company]").value) {
       setStatus(status, "success", "Thank you — your message has been sent.");
       return;
@@ -142,8 +131,6 @@ document.querySelectorAll("[data-emailjs-form]").forEach((form) => {
         form.dataset.successMessage ||
           "Thank you — your enquiry has been sent. You will get a reply within one working day."
       );
-      // Lead-magnet forms also reveal the download immediately, so the visitor
-      // is never left waiting on an email that might land in spam.
       if (form.dataset.download && status) {
         const link = document.createElement("a");
         link.href = form.dataset.download;
@@ -169,3 +156,29 @@ document.querySelectorAll("[data-emailjs-form]").forEach((form) => {
     }
   });
 });
+
+/* 5. Stage spotlight follows pointer (desktop, motion OK) --------------- */
+(() => {
+  const stage = document.querySelector("[data-stage]");
+  const spot = document.querySelector("[data-spot]");
+  if (!stage || !spot) return;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const coarse = window.matchMedia("(pointer: coarse)").matches;
+  if (reduce || coarse) return;
+
+  let raf = 0;
+  let x = 0.5;
+  let y = 0.18;
+  const apply = () => {
+    raf = 0;
+    const dx = (x - 0.5) * 18;
+    const dy = (y - 0.2) * 10;
+    spot.style.transform = `translateX(calc(-50% + ${dx}px)) translateY(${dy}px)`;
+  };
+  stage.addEventListener("pointermove", (e) => {
+    const r = stage.getBoundingClientRect();
+    x = (e.clientX - r.left) / r.width;
+    y = (e.clientY - r.top) / r.height;
+    if (!raf) raf = requestAnimationFrame(apply);
+  }, { passive: true });
+})();

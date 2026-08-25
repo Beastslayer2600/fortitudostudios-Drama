@@ -1,0 +1,115 @@
+/* ---------- Stage 3D layer (home hero) ----------------------------------- */
+.stage-3d {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  perspective: 1200px;
+  overflow: hidden;
+}
+.stage-floor {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -18%;
+  height: 58%;
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(0,0,0,.35) 28%, rgba(0,0,0,.72) 100%),
+    repeating-linear-gradient(90deg, rgba(243,212,125,.04) 0 2px, transparent 2px 42px);
+  transform: rotateX(58deg) scale(1.15);
+  transform-origin: center bottom;
+  box-shadow: 0 -40px 80px rgba(0,0,0,.45);
+}
+.stage-spot {
+  position: absolute;
+  top: -18%;
+  left: 50%;
+  width: min(92vw, 920px);
+  height: 130%;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse 42% 38% at 50% 18%, rgba(243,212,125,.28), transparent 58%),
+    conic-gradient(from 210deg at 50% 8%, transparent 0 38%, rgba(243,212,125,.09) 50%, transparent 62%);
+  clip-path: polygon(42% 0, 58% 0, 96% 100%, 4% 100%);
+  opacity: .85;
+  mix-blend-mode: screen;
+  transition: transform 220ms ease-out, opacity 220ms ease-out;
+}
+.stage-grain {
+  position: absolute;
+  inset: 0;
+  opacity: .18;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+.hero-home .hero-image { z-index: 0; }
+.hero-home .hero-overlay { z-index: 1; }
+.hero-title {
+  animation: title-enter 720ms cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes title-enter {
+  from { opacity: 0; transform: translateY(18px); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+
+.feature-grid-3d {
+  perspective: 1400px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.feature-grid-3d .feature-card {
+  transform: translateZ(0) rotateX(2deg);
+  transform-style: preserve-3d;
+  transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.35),
+    0 1px 0 rgba(243,212,125,.12) inset;
+}
+.feature-grid-3d .feature-card:hover,
+.feature-grid-3d .feature-card:focus-within {
+  transform: translateY(-8px) rotateX(0deg) rotateY(-2deg) translateZ(16px);
+  border-color: rgba(243,212,125,.45);
+  box-shadow:
+    0 28px 60px rgba(0,0,0,.5),
+    0 0 40px rgba(243,212,125,.08);
+}
+
+.mobile-cta {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .stage-floor { transform: rotateX(48deg) scale(1.08); height: 46%; }
+  .stage-spot { opacity: .55; }
+  .feature-grid-3d { grid-template-columns: 1fr; perspective: none; }
+  .feature-grid-3d .feature-card,
+  .feature-grid-3d .feature-card:hover {
+    transform: none;
+  }
+  .mobile-cta {
+    display: flex;
+    position: fixed;
+    z-index: 40;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    gap: 8px;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(9,11,8,.88);
+    backdrop-filter: blur(10px);
+  }
+  .mobile-cta .button { flex: 1; justify-content: center; text-align: center; }
+  .wa-float { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-title { animation: none; }
+  .stage-spot { transition: none; }
+  .feature-grid-3d .feature-card,
+  .feature-grid-3d .feature-card:hover {
+    transform: none;
+    transition: none;
+  }
+}
