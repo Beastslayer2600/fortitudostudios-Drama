@@ -6,7 +6,8 @@
   border-top: 1px solid var(--line);
   background: rgba(6, 8, 6, 0.85);
 }
-.footer-rich h4 {
+.footer-rich h4,
+.footer-rich .footer-h {
   margin: 0 0 14px;
   color: var(--gold-bright);
   font-family: Cinzel, Georgia, serif;
