@@ -2,8 +2,9 @@
    -------------------------------------------------------------------------
    1. Footer year
    2. Sticky header state
-   3. Mobile navigation (the nav was previously hidden entirely under 900px)
+   3. Mobile navigation
    4. EmailJS enquiry + lead-magnet forms
+   5. Stage spotlight follows pointer
    -------------------------------------------------------------------------
 */
 
@@ -157,28 +158,23 @@ document.querySelectorAll("[data-emailjs-form]").forEach((form) => {
   });
 });
 
-/* 5. Stage spotlight follows pointer (desktop, motion OK) --------------- */
+/* Stage spotlight follows pointer (desktop, motion OK) */
 (() => {
   const stage = document.querySelector("[data-stage]");
-  const spot = document.querySelector("[data-spot]");
-  if (!stage || !spot) return;
+  if (!stage) return;
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const coarse = window.matchMedia("(pointer: coarse)").matches;
   if (reduce || coarse) return;
 
   let raf = 0;
-  let x = 0.5;
-  let y = 0.18;
-  const apply = () => {
+  const apply = (x) => {
     raf = 0;
-    const dx = (x - 0.5) * 18;
-    const dy = (y - 0.2) * 10;
-    spot.style.transform = `translateX(calc(-50% + ${dx}px)) translateY(${dy}px)`;
+    const clamped = Math.min(72, Math.max(28, x * 100));
+    stage.style.setProperty("--spot-x", clamped + "%");
   };
   stage.addEventListener("pointermove", (e) => {
     const r = stage.getBoundingClientRect();
-    x = (e.clientX - r.left) / r.width;
-    y = (e.clientY - r.top) / r.height;
-    if (!raf) raf = requestAnimationFrame(apply);
+    const x = (e.clientX - r.left) / r.width;
+    if (!raf) raf = requestAnimationFrame(() => apply(x));
   }, { passive: true });
 })();
