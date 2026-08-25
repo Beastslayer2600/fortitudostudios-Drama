@@ -1,3 +1,4 @@
+document.documentElement.classList.add("js");
 /* Fortitudo Studios Drama — site behaviour
    -------------------------------------------------------------------------
    1. Footer year
