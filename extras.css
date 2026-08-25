@@ -180,3 +180,19 @@ html.js [data-reveal].is-in {
     transition: none;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   FIX (25 Aug 2026): large blank gap in the "Meet your coach" section.
+
+   `.split` is a two-column grid with `align-items: start`. In the biography
+   section the photo column is ~400px tall while the copy column is ~884px,
+   so 484px of dead space collected under the photos and read as a big empty
+   hole in the middle of the homepage. Centring the columns shares that space
+   above and below the photos instead. Only above the 900px breakpoint, where
+   the grid is actually two columns.
+--------------------------------------------------------------------------- */
+@media (min-width: 901px) {
+  .biography-section {
+    align-items: center;
+  }
+}
